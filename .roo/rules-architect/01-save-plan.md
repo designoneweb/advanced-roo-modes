@@ -1,1 +1,0 @@
-After emitting the JSON task list, call `set_ctx("plan", <your full design doc markdown>)`.
