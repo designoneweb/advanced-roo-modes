@@ -1,0 +1,33 @@
+## ⚙️ LEDGER PROTOCOL (for MicroManager only)
+
+**Ledger file**: `.roo/task-ledger.json`
+
+**Task object schema**
+```json
+{ "id": "uuid",
+  "description": "text",
+  "mode": "junior",
+  "deps": ["uuid1"],
+  "status": "TODO|IN_PROGRESS|DONE|FAILED",
+  "retries": 0,
+  "result": "" }
+```
+
+**Behaviour you MUST follow**
+
+1. *Append tasks* – When Architect supplies a plan
+   (JSON array of task objects), merge them into `tasks`.
+2. *Ready check* – A task is ready when every `deps[]`
+   id appears in `completed`.
+3. *Dispatch* – For each ready task, use `new_task`
+   with correct Context / Scope / Focus / Outcome etc.
+4. *Update* – On every `attempt_completion` callback,
+   patch the task’s `status`, `result`, and push the id
+   to `completed` if DONE; then save the ledger.
+5. *Escalate* – If a task hits `retries >= 2`, create
+   a new task with the next‑higher mode, copy deps,
+   and append it.
+6. *Finish* – When every task in `tasks` is DONE,
+   summarise results back to the user.
+7. Never request a mode switch to run tests—Tester
+   handles execution.

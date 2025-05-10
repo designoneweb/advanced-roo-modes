@@ -1,0 +1,77 @@
+{
+  "tasks": [
+    {
+      "id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+      "description": "Create the `utils` directory to house the temperature conversion module.",
+      "mode": "junior",
+      "deps": [],
+      "status": "DONE",
+      "retries": 0,
+      "result": "Directory `utils` created successfully. Task ID: f47ac10b-58cc-4372-a567-0e02b2c3d479"
+    },
+    {
+      "id": "6ba7b810-9dad-11d1-80b4-00c04fd430c8",
+      "description": "Create `utils/temperature.py` with `c_to_f(c)` and `f_to_c(f)` functions for Celsius and Fahrenheit conversion. Functions should be typed: `def c_to_f(c: float) -> float:` and `def f_to_c(f: float) -> float:`.",
+      "mode": "junior",
+      "deps": ["f47ac10b-58cc-4372-a567-0e02b2c3d479"],
+      "status": "DONE",
+      "retries": 0,
+      "result": "File `utils/temperature.py` created with conversion functions. Task ID: 6ba7b810-9dad-11d1-80b4-00c04fd430c8"
+    },
+    {
+      "id": "1c1f3e1e-7d5b-4c8e-8e7a-8f8f8f8f8f8f",
+      "description": "Create/Update `utils/__init__.py` to expose `c_to_f` and `f_to_c` functions from the `utils.temperature` module (e.g., `from .temperature import c_to_f, f_to_c`) and update `__all__ = ['c_to_f', 'f_to_c']`.",
+      "mode": "junior",
+      "deps": ["6ba7b810-9dad-11d1-80b4-00c04fd430c8"],
+      "status": "DONE",
+      "retries": 0,
+      "result": "File `utils/__init__.py` updated to expose conversion functions. Task ID: 1c1f3e1e-7d5b-4c8e-8e7a-8f8f8f8f8f8f"
+    },
+    {
+      "id": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+      "description": "Create the `tests` directory for housing test files.",
+      "mode": "junior",
+      "deps": [],
+      "status": "DONE",
+      "retries": 0,
+      "result": "Directory `tests` created successfully. Task ID: a1b2c3d4-e5f6-7890-1234-567890abcdef"
+    },
+    {
+      "id": "b2c3d4e5-f6a7-8901-2345-67890abcdef0",
+      "description": "Create `tests/test_temperature.py`. Import functions (e.g., `from utils.temperature import c_to_f, f_to_c`). Include test cases: `assert c_to_f(0) == 32`, `assert c_to_f(100) == 212`, `assert f_to_c(32) == 0`, `assert f_to_c(212) == 100`. Ensure tests achieve 100% coverage.",
+      "mode": "junior",
+      "deps": ["1c1f3e1e-7d5b-4c8e-8e7a-8f8f8f8f8f8f", "a1b2c3d4-e5f6-7890-1234-567890abcdef"],
+      "status": "DONE",
+      "retries": 0,
+      "result": "File `tests/test_temperature.py` created with test cases. Task ID: b2c3d4e5-f6a7-8901-2345-67890abcdef0"
+    },
+      "id": "c3d4e5f6-a7b8-9012-3456-7890abcdef01",
+      "description": "Execute `pytest` to run all tests and verify the temperature conversion module's correctness and test coverage.",
+      "mode": "tester",
+      "deps": ["b2c3d4e5-f6a7-8901-2345-67890abcdef0"],
+      "status": "FAILED",
+      "retries": 1,
+      "result": "Pytest setup is required in the current environment."
+    },
+    {
+     "id": "retry-c3d4e5f6-a7b8-9012-3456-7890abcdef01",
+     "description": "Execute `pytest` to run all tests and verify the temperature conversion module's correctness and test coverage. (Retry 1)",
+     "mode": "tester",
+     "deps": ["b2c3d4e5-f6a7-8901-2345-67890abcdef0"],
+     "status": "FAILED",
+     "retries": 1,
+     "result": "ModuleNotFoundError: No module named 'utils'. PYTHONPATH may need adjustment."
+  },
+   {
+     "id": "pythonpath-retry-c3d4e5f6",
+     "description": "Execute `PYTHONPATH=. pytest --cov=utils tests/` to run tests with adjusted PYTHONPATH.",
+     "mode": "tester",
+     "deps": ["b2c3d4e5-f6a7-8901-2345-67890abcdef0"],
+     "status": "DONE",
+     "retries": 0,
+     "result": "Pytest (PYTHONPATH adjusted) executed. All tests passed with 100% coverage. Task ID: pythonpath-retry-c3d4e5f6"
+   },
+ ],
+  "completed": ["f47ac10b-58cc-4372-a567-0e02b2c3d479", "6ba7b810-9dad-11d1-80b4-00c04fd430c8", "1c1f3e1e-7d5b-4c8e-8e7a-8f8f8f8f8f8f", "a1b2c3d4-e5f6-7890-1234-567890abcdef", "b2c3d4e5-f6a7-8901-2345-67890abcdef0", "pythonpath-retry-c3d4e5f6"],
+  "context": {}
+}
